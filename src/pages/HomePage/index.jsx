@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
+import { Button } from "@/components/ui/button";
 import SideBar from '../../components/SideBar'
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
 
@@ -78,6 +78,9 @@ const HomePage = () => {
     setId(id);
   }
 
+  const handleLogout = () => {
+    localStorage.clear();
+  }
   
   useEffect(() => {
 
@@ -103,6 +106,13 @@ const HomePage = () => {
         getId={getId}
         id={id}
       />
+      <div className={`absolute top-3 right-5`}>
+      <Link to={"/login"} onClick={handleLogout}>
+                <Button className="bg-popover border text-popover-foreground dark:hover:bg-[#171717] hover:bg-[#ffffff] w-20">
+                    logout
+                </Button>
+                </Link>
+      </div>
         {!id &&
           <div className="flex items-center justify-center w-full h-screen">
             <h1 className="text-3xl font-semibold">SELECT USER!</h1>
